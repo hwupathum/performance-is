@@ -65,9 +65,9 @@ prompt = true
 wsdl.enable=false
 
 [keystore.primary]
-file_name = "wso2carbon.jks"
+file_name = "wso2carbon.p12"
 password = "wso2carbon"
-type="JKS"
+type="PKCS12"
 
 [truststore]
 file_name="client-truststore.jks"

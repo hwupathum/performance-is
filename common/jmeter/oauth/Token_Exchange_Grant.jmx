@@ -65,7 +65,7 @@
           </elementProp>
           <elementProp name="noOfUsers" elementType="Argument">
             <stringProp name="Argument.name">noOfUsers</stringProp>
-            <stringProp name="Argument.value">${__P(userCount,1000)}</stringProp>
+            <stringProp name="Argument.value">${__P(userCount,100000)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="timeToRun" elementType="Argument">

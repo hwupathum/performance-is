@@ -57,13 +57,13 @@
 default_concurrent_users=""
 concurrency=""
 # Application heap Sizes
-default_heap_sizes="2G"
+default_heap_sizes="4G"
 
 # Test Duration in minutes
-default_test_duration=15
+default_test_duration=10
 test_duration=$default_test_duration
 # Warm-up time in minutes
-default_warm_up_time=5
+default_warm_up_time=2
 warm_up_time=$default_warm_up_time
 # Heap size of JMeter Client
 default_jmeter_client_heap_size=2G
@@ -86,7 +86,7 @@ is_port=$default_is_port
 noOfTenants=100
 spCount=10
 idpCount=1
-userCount=1000
+userCount=100000
 mode=""
 deployment=""
 

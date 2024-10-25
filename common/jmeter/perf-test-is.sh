@@ -60,10 +60,10 @@ concurrency=""
 default_heap_sizes="4G"
 
 # Test Duration in minutes
-default_test_duration=10
+default_test_duration=15
 test_duration=$default_test_duration
 # Warm-up time in minutes
-default_warm_up_time=2
+default_warm_up_time=5
 warm_up_time=$default_warm_up_time
 # Heap size of JMeter Client
 default_jmeter_client_heap_size=2G

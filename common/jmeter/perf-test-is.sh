@@ -57,7 +57,7 @@
 default_concurrent_users=""
 concurrency=""
 # Application heap Sizes
-default_heap_sizes="2G"
+default_heap_sizes="4G"
 
 # Test Duration in minutes
 default_test_duration=15
@@ -86,7 +86,7 @@ is_port=$default_is_port
 noOfTenants=100
 spCount=10
 idpCount=1
-userCount=1000
+userCount=100000
 mode=""
 deployment=""
 
@@ -221,6 +221,9 @@ if [ "$concurrency" == "50-500" ]; then
 elif [ "$concurrency" == "500-3000" ]; then
     echo "Running tests for concurrency level 500-3000"
     default_concurrent_users="500 1000 1500 2000 2500 3000"
+elif [ "$concurrency" == "1000-3000" ]; then
+    echo "Running tests for concurrency level 500-3000"
+    default_concurrent_users="1000 1500 2000 2500 3000"
 else
     echo "Running tests for concurrency level 50-3000"
     default_concurrent_users="50 100 150 300 500 1000 1500 2000 2500 3000"

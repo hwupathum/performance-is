@@ -230,7 +230,8 @@ Resources:
       AllocatedStorage: !Ref DBAllocationStorage
       BackupRetentionPeriod: '0'
       DBInstanceIdentifier: WSO2ISDBInstancesuffix
-      DBName: WSO2_IS_DB_2
+      DBSnapshotIdentifier: !Ref DBSnapshotId
+      #DBName: WSO2_IS_DB_2
       #EngineVersion: !Select [1, !Split ["_", !ImportValue DBEngine]]
       #Engine:  !Select [0, !Split ["_", !ImportValue DBEngine]]
       EngineVersion: 8.0.36
@@ -611,6 +612,10 @@ Parameters:
       - db.m4.2xlarge
       - db.m5.xlarge
       - db.m5.2xlarge
+  DBSnapshotId:
+    Description: Snapshot ID to restore the database from
+    Type: String
+    Default: wso2isusersnapshot100k
   DBAllocationStorage:
     Description: Provide storage size in Gigabytes
     Type: Number

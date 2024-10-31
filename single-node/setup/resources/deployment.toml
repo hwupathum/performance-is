@@ -30,7 +30,14 @@ validation_query = "SELECT 1"
 username = "wso2carbon"
 password = "wso2carbon"
 [database.identity_db.pool_options]
+validationQuery="SELECT 1"
+testOnBorrow = true
 maxActive = "1500"
+maxWait = "60000"
+minIdle = "100"
+maxIdle = "500"
+validationInterval = "30000"
+defaultAutoCommit = false
 
 [database.shared_db]
 driver = "com.mysql.jdbc.Driver"
@@ -39,7 +46,14 @@ validation_query = "SELECT 1"
 username = "wso2carbon"
 password = "wso2carbon"
 [database.shared_db.pool_options]
+validationQuery="SELECT 1"
+testOnBorrow = true
 maxActive = "1500"
+maxWait = "60000"
+minIdle = "100"
+maxIdle = "500"
+validationInterval = "30000"
+defaultAutoCommit = false
 
 [database.user]
 driver = "com.mysql.jdbc.Driver"
@@ -48,7 +62,14 @@ validation_query = "SELECT 1"
 username = "wso2carbon"
 password = "wso2carbon"
 [database.user.pool_options]
+validationQuery="SELECT 1"
+testOnBorrow = true
 maxActive = "1500"
+maxWait = "60000"
+minIdle = "100"
+maxIdle = "500"
+validationInterval = "30000"
+defaultAutoCommit = false
 
 [session]
 data_source="jdbc/WSO2SessionDB"
@@ -62,13 +83,14 @@ driver = "com.mysql.jdbc.Driver"
 jmxEnabled = false
 
 [datasource.WSO2SessionDB.pool_options]
-validationQuery="SELECT 1; COMMIT"
+validationQuery="SELECT 1"
 testOnBorrow = true
-maxActive=1500
-maxWait = 60000
-minIdle = 5
-validationInterval="30000"
-defaultAutoCommit=false
+maxActive = "1500"
+maxWait = "60000"
+minIdle = "100"
+maxIdle = "500"
+validationInterval = "30000"
+defaultAutoCommit = false
 
 [transport.https.properties]
 maxThreads = "1500"

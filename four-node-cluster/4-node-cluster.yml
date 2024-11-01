@@ -727,7 +727,7 @@ Parameters:
   DBSnapshotId:
     Description: Snapshot ID to restore the database from
     Type: String
-    Default: wso2isusersnapshot100k
+    Default: wso2isusersnapshot1m
   DBAllocationStorage:
     Description: Provide storage size in Gigabytes
     Type: Number

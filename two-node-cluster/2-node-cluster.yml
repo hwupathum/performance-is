@@ -631,7 +631,7 @@ Parameters:
     NoEcho: true
   SessionDBInstanceType:
     Type: String
-    Default: db.m5.2xlarge
+    Default: db.m5.xlarge
     AllowedValues:
       - db.t2.medium
       - db.t2.large
@@ -672,7 +672,7 @@ Parameters:
       - CentOS_7
   BastionInstanceType:
     Type: String
-    Default: c5.xlarge
+    Default: c5.large
     AllowedValues:
       - t2.micro
       - t2.medium

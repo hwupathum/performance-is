@@ -39,11 +39,13 @@ default_db_storage="100"
 db_storage=$default_db_storage
 default_session_db_storage="100"
 session_db_storage=$default_session_db_storage
+default_session_instance_type=db.m5.xlarge
+session_instance_type=$default_session_instance_type
 default_db_instance_type=db.m5.2xlarge
 db_instance_type=$default_db_instance_type
 default_is_instance_type=c5.xlarge
 wso2_is_instance_type="$default_is_instance_type"
-default_bastion_instance_type=c5.xlarge
+default_bastion_instance_type=c5.large
 bastion_instance_type="$default_bastion_instance_type"
 no_of_nodes=3
 
@@ -299,7 +301,7 @@ create_stack_command="aws cloudformation create-stack --stack-name $stack_name \
         ParameterKey=SessionDBUsername,ParameterValue=$db_username \
         ParameterKey=SessionDBPassword,ParameterValue=$db_password \
         ParameterKey=SessionDBAllocationStorage,ParameterValue=$session_db_storage \
-        ParameterKey=SessionDBInstanceType,ParameterValue=$db_instance_type \
+        ParameterKey=SessionDBInstanceType,ParameterValue=$session_instance_type \
         ParameterKey=WSO2InstanceType,ParameterValue=$wso2_is_instance_type \
         ParameterKey=BastionInstanceType,ParameterValue=$bastion_instance_type \
         ParameterKey=UserTag,ParameterValue=$user_tag \

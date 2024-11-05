@@ -111,7 +111,7 @@ while getopts "q:k:c:j:n:u:p:d:e:i:b:w:v:h" opts; do
         db_instance_type=${OPTARG}
         ;;
     i)
-        wso2_is_instance_type=${OPTARG}
+        wso2_is_instance_type="c6i.xlarge"
         ;;
     b)
         bastion_instance_type=${OPTARG}

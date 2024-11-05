@@ -567,8 +567,8 @@ function initiailize_test() {
 
         if [ $mode == "B2B" ]; then
             run_b2b_test_data_scripts
-        else
-            run_test_data_scripts
+#        else
+#            run_test_data_scripts
             #run_tenant_test_data_scripts
         fi
     fi

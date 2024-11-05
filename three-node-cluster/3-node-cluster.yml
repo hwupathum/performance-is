@@ -596,16 +596,12 @@ Parameters:
     NoEcho: true
   DBInstanceType:
     Type: String
-    Default: db.m5.2xlarge
+    Default: db.m6i.2xlarge
     AllowedValues:
       - db.t2.medium
       - db.t2.large
       - db.t2.xlarge
       - db.t2.2xlarge
-      - db.m3.medium
-      - db.m3.large
-      - db.m3.xlarge
-      - db.m3.2xlarge
       - db.m4.large
       - db.m4.xlarge
       - db.m4.2xlarge
@@ -613,6 +609,12 @@ Parameters:
       - db.m5.2xlarge
       - db.m5.4xlarge
       - db.m5.12xlarge
+      - db.m6i.medium
+      - db.m6i.large
+      - db.m6i.xlarge
+      - db.m6i.2xlarge
+      - db.m6i.4xlarge
+      - db.m6i.12xlarge
   DBAllocationStorage:
     Description: Provide storage size in Gigabytes
     Type: Number

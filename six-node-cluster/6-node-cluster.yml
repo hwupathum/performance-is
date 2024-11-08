@@ -793,11 +793,11 @@ Parameters:
   DBAllocationStorage:
     Description: Provide storage size in Gigabytes
     Type: Number
-    Default: 100
+    Default: 200
   DBIops:
     Description: Provide IOps size in numbers
     Type: Number
-    Default: 5000
+    Default: 10000
   JDKVersion:
     Type: String
     Default: Oracle_JDK_8

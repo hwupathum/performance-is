@@ -37,11 +37,11 @@ default_db_password="wso2carbon"
 db_password="$default_db_password"
 default_db_storage="100"
 db_storage=$default_db_storage
-default_db_instance_type=db.m5.2xlarge
+default_db_instance_type=db.m6i.2xlarge
 db_instance_type=$default_db_instance_type
 default_is_instance_type=c5.xlarge
 wso2_is_instance_type="$default_is_instance_type"
-default_bastion_instance_type=c5.2xlarge
+default_bastion_instance_type=c6i.2xlarge
 bastion_instance_type="$default_bastion_instance_type"
 no_of_nodes=3
 
@@ -108,7 +108,7 @@ while getopts "q:k:c:j:n:u:p:d:e:i:b:w:v:h" opts; do
         db_instance_type=${OPTARG}
         ;;
     i)
-        wso2_is_instance_type=${OPTARG}
+        wso2_is_instance_type="c6i.xlarge"
         ;;
     b)
         bastion_instance_type=${OPTARG}

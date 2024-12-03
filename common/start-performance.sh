@@ -26,14 +26,11 @@ key_file=""
 certificate_name=""
 jmeter_setup=""
 is_setup=""
+concurrency_type=""
 default_db_username="wso2carbon"
 db_username="$default_db_username"
 default_db_password="wso2carbon"
 db_password="$default_db_password"
-default_db_storage="100"
-db_storage=$default_db_storage
-default_session_db_storage="100"
-session_db_storage=$default_session_db_storage
 default_db_instance_type=db.m6i.2xlarge
 db_instance_type=$default_db_instance_type
 default_is_instance_type=c5.xlarge
@@ -43,6 +40,7 @@ bastion_instance_type="$default_bastion_instance_type"
 keystore_type="JKS"
 db_type="mysql"
 is_case_insensitive_username_and_attributes="false"
+enable_high_concurrency="false"
 
 results_dir="$PWD/results-$timestamp"
 default_minimum_stack_creation_wait_time=10
@@ -52,9 +50,9 @@ function usage() {
     echo ""
     echo "Usage: "
     echo "$0 -k <key_file> -c <certificate_name> -j <jmeter_setup_path> -n <IS_zip_file_path>"
-    echo "   [-u <db_username>] [-p <db_password>] [-d <db_storage>] [-s <session_db_storage>] [-e <db_instance_type>]"
+    echo "   [-u <db_username>] [-p <db_password>] [-e <db_instance_type>]"
     echo "   [-i <wso2_is_instance_type>] [-b <bastion_instance_type>] [-t <keystore_type>] [-m <db_type>]"
-    echo "   [-l <is_case_insensitive_username_and_attributes>]"
+    echo "   [-l <is_case_insensitive_username_and_attributes>] [-r <concurrency_type>]"
     echo "   [-w <minimum_stack_creation_wait_time>] [-h]"
     echo ""
     echo "-k: The Amazon EC2 key file to be used to access the instances."
@@ -67,8 +65,6 @@ function usage() {
     echo "-n: The is server zip"
     echo "-u: The database username. Default: $default_db_username."
     echo "-p: The database password. Default: $default_db_password."
-    echo "-d: The database storage in GB. Default: $default_db_storage."
-    echo "-s: The session database storage in GB. Default: $default_session_db_storage."
     echo "-e: The database instance type. Default: $default_db_instance_type."
     echo "-i: The instance type used for IS nodes. Default: $default_is_instance_type."
     echo "-b: The instance type used for the bastion node. Default: $default_bastion_instance_type."
@@ -77,8 +73,8 @@ function usage() {
     echo "-v: The required testing mode [FULL/QUICK]"
     echo "-h: Display this help and exit."
     echo "-g: Number of IS nodes."
-    echo "-t: Keystore type. Default: $default_keystore_type."
-    echo "-m: Database type. Default $default_db_type."
+    echo "-t: Keystore type. Default: PKCS12."
+    echo "-m: Database type. Default: mysql."
     echo "-l: Case insensitivity of the username and attributes. Default: false."
     echo ""
 }
@@ -102,7 +98,7 @@ function execute_db_command() {
     ssh_bastion_cmd "$db_command"
 }
 
-while getopts "q:k:c:j:n:u:p:d:e:i:b:w:s:t:g:m:l:h" opts; do
+while getopts "q:k:c:j:n:u:p:e:i:b:w:t:g:m:l:r:h" opts; do
     case $opts in
     q)
         user_tag=${OPTARG}
@@ -125,11 +121,8 @@ while getopts "q:k:c:j:n:u:p:d:e:i:b:w:s:t:g:m:l:h" opts; do
     p)
         db_password=${OPTARG}
         ;;
-    d)
-        db_storage=${OPTARG}
-        ;;
-    s)
-        session_db_storage=${OPTARG}
+    r)
+        concurrency_type=${OPTARG}
         ;;
     e)
         db_instance_type=${OPTARG}
@@ -187,7 +180,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Pass the modified options to the command
-run_performance_tests_options=("-b ${db_type} -g ${no_of_nodes} -r ${modified_options[@]}")
+run_performance_tests_options=("-b ${db_type} -g ${no_of_nodes} -r ${concurrency_type} -x ${modified_options[@]}")
 
 if [[ -z $user_tag ]]; then
     echo "Please provide the user tag."
@@ -235,6 +228,11 @@ elif [[ $no_of_nodes -eq 4 ]]; then
 else
     echo "Invalid value for no_of_nodes. Please provide a valid number."
     exit 1
+fi
+
+# Enable high concurrency mode if the concurrency type contains 1000 or more
+if [[ $concurrency_type =~ ^([0-9]{4}-[0-9]{3}|[0-9]{3}-[0-9]{4}|[0-9]{4}-[0-9]{4}|[0-9]{4})$ ]]; then
+    enable_high_concurrency="true"
 fi
 
 key_filename=$(basename "$key_file")
@@ -313,16 +311,15 @@ create_stack_command="aws cloudformation create-stack --stack-name $stack_name \
         ParameterKey=KeyPairName,ParameterValue=$key_name \
         ParameterKey=DBUsername,ParameterValue=$db_username \
         ParameterKey=DBPassword,ParameterValue=$db_password \
-        ParameterKey=DBAllocationStorage,ParameterValue=$db_storage \
         ParameterKey=DBInstanceType,ParameterValue=$db_instance_type \
         ParameterKey=DBType,ParameterValue=$db_type \
         ParameterKey=SessionDBUsername,ParameterValue=$db_username \
         ParameterKey=SessionDBPassword,ParameterValue=$db_password \
-        ParameterKey=SessionDBAllocationStorage,ParameterValue=$session_db_storage \
         ParameterKey=SessionDBInstanceType,ParameterValue=$db_instance_type \
         ParameterKey=WSO2InstanceType,ParameterValue=$wso2_is_instance_type \
         ParameterKey=BastionInstanceType,ParameterValue=$bastion_instance_type \
         ParameterKey=UserTag,ParameterValue=$user_tag \
+        ParameterKey=HighConcurrencyMode,ParameterValue=$enable_high_concurrency \
     --capabilities CAPABILITY_IAM"
 
 echo ""

@@ -43,7 +43,7 @@ declare -A test_scenario2=(
     [tenantMode]=false
     [skip]=false
     [modes]="FULL QUICK"
-# )
+)
 # declare -A test_scenario03=(
 #     [name]="03-oidc_auth_code_redirect_with_consent_retrieve_user_attributes_and_groups"
 #     [display_name]="OIDC Auth Code Grant Redirect With Consent Retrieve User Attributes and Groups"

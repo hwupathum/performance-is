@@ -21,7 +21,7 @@ CaseInsensitiveAttributes = "{is_case_insensitive_username_and_attributes}"
 UseCaseSensitiveUsernameForCacheKeys = false
 SCIMEnabled=true
 IsBulkImportSupported=false
-StoreUserAttributeValueAsUnicode = true
+# StoreUserAttributeValueAsUnicode = true
 
 [realm_manager]
 data_source = "WSO2USER_DB"

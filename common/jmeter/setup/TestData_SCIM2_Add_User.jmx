@@ -56,12 +56,12 @@
           </elementProp>
           <elementProp name="userFirstNamePrefix" elementType="Argument">
             <stringProp name="Argument.name">userFirstNamePrefix</stringProp>
-            <stringProp name="Argument.value">isTestUserFirstName_</stringProp>
+            <stringProp name="Argument.value">Дмитрий_</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="userLastNamePrefix" elementType="Argument">
             <stringProp name="Argument.name">userLastNamePrefix</stringProp>
-            <stringProp name="Argument.value">isTestUserLastName_</stringProp>
+            <stringProp name="Argument.value">محمد_</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="useremailPrefix" elementType="Argument">

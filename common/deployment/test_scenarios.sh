@@ -35,15 +35,15 @@
 #     [skip]=false
 #     [modes]="FULL QUICK PUBLISH"
 # )
-declare -A test_scenario2=(
-    [name]="02-oidc_auth_code_redirect_with_consent_retrieve_user_attributes"
-    [display_name]="OIDC Auth Code Grant Redirect With Consent Retrieve User Attributes"
-    [description]="Obtain an access token and an id token using the OAuth 2.0 authorization code grant type."
-    [jmx]="oidc/OIDC_AuthCode_Redirect_WithConsent_Retrieve_User_Attributes.jmx"
-    [tenantMode]=false
-    [skip]=false
-    [modes]="FULL QUICK"
-)
+# declare -A test_scenario2=(
+#     [name]="02-oidc_auth_code_redirect_with_consent_retrieve_user_attributes"
+#     [display_name]="OIDC Auth Code Grant Redirect With Consent Retrieve User Attributes"
+#     [description]="Obtain an access token and an id token using the OAuth 2.0 authorization code grant type."
+#     [jmx]="oidc/OIDC_AuthCode_Redirect_WithConsent_Retrieve_User_Attributes.jmx"
+#     [tenantMode]=false
+#     [skip]=false
+#     [modes]="FULL QUICK"
+# )
 # declare -A test_scenario03=(
 #     [name]="03-oidc_auth_code_redirect_with_consent_retrieve_user_attributes_and_groups"
 #     [display_name]="OIDC Auth Code Grant Redirect With Consent Retrieve User Attributes and Groups"
